@@ -12,5 +12,26 @@ namespace Player.Enum
     {
         OnState
     }
+
+    public enum UIEvents
+    {
+        OnOpenPanel,
+        OnClosePanel,
+    }
+
+    public enum PanelType
+    {
+        SuccesPanel,
+        FailPanel
+    }
+
+    public enum SpinItemType
+    {
+        Cash,
+        Gold,
+        HelmetPumpkin,
+        BayonetEasterTime
+        
+    }
 }
 

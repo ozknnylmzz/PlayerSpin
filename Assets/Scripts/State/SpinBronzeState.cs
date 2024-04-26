@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Player.Spin.State
 {
-    public class SpinBronzeState
+    public class SpinBronzeState :IState
     {
         private SpinController _spinController;
 
@@ -13,6 +13,16 @@ namespace Player.Spin.State
         public SpinBronzeState(SpinController spinController)
         {
             _spinController = spinController;
+        }
+
+        public void Enter()
+        {
+            EventManager<PanelType>.Execute(UIEvents.OnOpenPanel,PanelType.SuccesPanel);
+        }
+
+        public void Exit()
+        {
+            EventManager<PanelType>.Execute(UIEvents.OnClosePanel,PanelType.SuccesPanel);
         }
     }
 }

@@ -1,23 +1,29 @@
+using System.Collections.Generic;
+using Player.Data;
+using Player.Enum;
 using UnityEngine;
 
 namespace Player.Spin.Strategy
 {
 public class GoldenSpinTypeStrategy : ISpinTypeStrategy
 {
-    private SpinCreatorData _data;
+    private SpinCreatorData _spinCreatorData;
+    private InventoryData _inventoryData;
 
-    public GoldenSpinTypeStrategy(SpinCreatorData data)
+    public GoldenSpinTypeStrategy(SpinCreatorData spinCreatorData,InventoryData inventoryData)
     {
-        _data = data;
+        _spinCreatorData = spinCreatorData;
+        _inventoryData = inventoryData;
     }
+    
     public (Sprite baseImage, Sprite indicatorImage) GetBaseAndIndicatorSprites()
     {
-        return (_data.UISpinGolden.UiSpinGoldenBase, _data.UISpinGolden.UiSpinGoldenIndicator);
+        return (_spinCreatorData.UISpinGolden.UiSpinGoldenBase, _spinCreatorData.UISpinGolden.UiSpinGoldenIndicator);
     }
 
-    public Sprite[] GetSpinTypeItems()
+    public List<Sprite> GetWheelItems()
     {
-        return _data.UISpinGolden.UiSpinGoldenItems;
+        return _inventoryData.GetSpritesByType(SpinType.Golden);
     }
 }
 }

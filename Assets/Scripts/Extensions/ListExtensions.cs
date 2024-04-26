@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 
-namespace Player.Extensions
-{
     public static class ListExtensions 
     {
         public static void Shuffle<T>(this List<T> list)
@@ -31,6 +29,6 @@ namespace Player.Extensions
             }
         }
     }
-}
+
 
 

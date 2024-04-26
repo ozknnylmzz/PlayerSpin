@@ -9,7 +9,7 @@ namespace Player.Spin
         [SerializeField] private RectTransform _rectTransform;
         
         [ContextMenu("Play Spin")]
-        private void PlaySpin()
+        public Tween PlaySpin(out float targetAngle)
         {
             float totalAnglePerSection = _spinSettings.RewardAngle + _spinSettings.GapAngle;
 
@@ -17,11 +17,11 @@ namespace Player.Spin
 
             int randomSectionIndex = Random.Range(0, (int)(360 / totalAnglePerSection));
            
-            float targetAngle = numberOfSpins * 360f + randomSectionIndex * totalAnglePerSection + _spinSettings.RewardAngle / 2f;
+             targetAngle = numberOfSpins * 360f + randomSectionIndex * totalAnglePerSection + _spinSettings.RewardAngle / 2f;
 
             targetAngle = -targetAngle+Random.Range(0,_spinSettings.RewardAngle);
-
-            _rectTransform.DORotate(new Vector3(0, 0, targetAngle), _spinSettings.SpinTime, RotateMode.FastBeyond360)
+            
+            return  _rectTransform.DORotate(new Vector3(0, 0, targetAngle), _spinSettings.SpinTime, RotateMode.FastBeyond360)
                 .SetEase(Ease.OutCubic);
         }
     }

@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: SpinSettings
   m_EditorClassIdentifier: 
   <SpinTime>k__BackingField: 3
+  <RewardAngle>k__BackingField: 20
+  <GapAngle>k__BackingField: 25
+  <MinSpins>k__BackingField: 3
+  <MaxSpins>k__BackingField: 5

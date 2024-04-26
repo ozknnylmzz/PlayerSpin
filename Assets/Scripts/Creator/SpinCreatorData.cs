@@ -1,4 +1,5 @@
 using System;
+using Player.Data;
 using UnityEngine;
 
 namespace Player.Spin
@@ -16,7 +17,6 @@ namespace Player.Spin
     {
         [field:SerializeField] public Sprite UiSpinBronzeBase { get; private set; }
         [field:SerializeField] public Sprite UiSpinBronzeIndicator { get; private set; }
-        [field:SerializeField] public Sprite[]  UiSpinBronzeItems{ get; private set; }
     }
     
     [Serializable]
@@ -24,7 +24,6 @@ namespace Player.Spin
     {
         [field:SerializeField] public Sprite UiSpinSilverBase { get; private set; }
         [field:SerializeField] public Sprite UiSpinSilverIndicator { get; private set; }
-        [field:SerializeField] public Sprite[]  UiSpinSilverItems{ get; private set; }
     }
     
     [Serializable]
@@ -32,7 +31,6 @@ namespace Player.Spin
     {
         [field:SerializeField] public Sprite UiSpinGoldenBase { get; private set; }
         [field:SerializeField] public Sprite UiSpinGoldenIndicator { get; private set; }
-        [field:SerializeField] public Sprite[]  UiSpinGoldenItems{ get; private set; }
     }
     
 }

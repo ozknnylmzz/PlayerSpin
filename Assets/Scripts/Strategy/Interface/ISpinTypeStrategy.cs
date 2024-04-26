@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Player.Spin.Strategy
@@ -5,7 +6,7 @@ namespace Player.Spin.Strategy
     public interface ISpinTypeStrategy
     {
         (Sprite baseImage, Sprite indicatorImage) GetBaseAndIndicatorSprites();
-        Sprite[] GetSpinTypeItems();
+        List<Sprite> GetWheelItems();
     }
 }
 
