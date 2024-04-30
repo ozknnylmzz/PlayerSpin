@@ -6,16 +6,16 @@ namespace Player.Spin.Strategy
 {
     public class SpinTypeStrategyFactory
     {
-        public static ISpinTypeStrategy CreateStrategy(SpinType spinType, SpinCreatorData spinCreatorData,InventoryData inventoryData)
+        public static ISpinTypeStrategy CreateStrategy(SpinType spinType, SpinBaseItemData spinBaseItemData,SpinItemData spinItemData)
         {
             switch (spinType)
             {
                 case SpinType.Bronze:
-                    return new BronzeSpinTypeStrategy(spinCreatorData,inventoryData);
+                    return new BronzeSpinTypeStrategy(spinBaseItemData,spinItemData);
                 case SpinType.Silver:
-                    return new SilverSpinTypeStrategy(spinCreatorData,inventoryData);
+                    return new SilverSpinTypeStrategy(spinBaseItemData,spinItemData);
                 case SpinType.Golden:
-                    return new GoldenSpinTypeStrategy(spinCreatorData,inventoryData);
+                    return new GoldenSpinTypeStrategy(spinBaseItemData,spinItemData);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(spinType),
                         $"Not expected spin type value: {spinType}");

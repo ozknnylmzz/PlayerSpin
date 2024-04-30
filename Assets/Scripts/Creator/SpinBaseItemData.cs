@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Player.Spin
 {
     [CreateAssetMenu(fileName = "SpinObjectsData", menuName = "Spin/Spin Objects Data")]
-    public class SpinCreatorData : ScriptableObject
+    public class SpinBaseItemData : ScriptableObject
     {
         public UISpinBronze UISpinBronze;
         public UISpinSilver UISpinSilver;

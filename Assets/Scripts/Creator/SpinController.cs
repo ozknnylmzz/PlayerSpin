@@ -1,4 +1,5 @@
 using System;
+using Player.Data;
 using Player.Enum;
 using Player.Spin.State;
 using UnityEngine;
@@ -12,28 +13,36 @@ namespace Player.Spin
         public SpinBronzeState SpinBronzeState { get; private set; }
         public SpinGoldenState SpinGoldenState { get; private set; }
         public SpinPlayState SpinPlayState { get; private set; }
-
+        public SpinIdleState SpinIdleState { get; private set; }
 
         [SerializeField] private Spin _spin;
         [SerializeField] private Button _spinButton;
-        
+        [SerializeField] private WheelData _wheelData;
         
         private void Awake()
         {
             SpinSilverState = new SpinSilverState(this);
             SpinBronzeState = new SpinBronzeState(this);
             SpinGoldenState = new SpinGoldenState(this);
-            SpinPlayState = new SpinPlayState(this, _spin,_spinButton);
+            SpinIdleState = new SpinIdleState(this);
+            SpinPlayState = new SpinPlayState(this, _spin,_spinButton,_wheelData);
+        }
+
+        private void Start()
+        {
+            ChangeState(SpinIdleState);
         }
 
         private void OnEnable()
         {
             _spinButton.onClick.AddListener(PlaySpinState);
+            EventManager.Subscribe(SpinStateType.OnIdleState,SetIdleSpinState);
         }
 
         private void OnDisable()
         {
             _spinButton.onClick.RemoveListener(PlaySpinState);
+            EventManager.Unsubscribe(SpinStateType.OnIdleState,SetIdleSpinState);
         }
 
         private void PlaySpinState()
@@ -41,6 +50,10 @@ namespace Player.Spin
             ChangeState(SpinPlayState);
         }
         
+        private void SetIdleSpinState()
+        {
+            ChangeState(SpinIdleState);
+        }
         
     }
 }

@@ -15,28 +15,40 @@ namespace Player.Spin.Creator
         [SerializeField] private Image _spineBaseImage;
         [SerializeField] private Image _indicatorImage;
 
-        [SerializeField] private SpinCreatorData _spinCreatorData;
-        [SerializeField] private InventoryData _inventoryData;
-
-        [FormerlySerializedAs("_spinInventoryData")] [SerializeField] private WheelData wheelData;
-        [FormerlySerializedAs("_spinItems")] [SerializeField] private List<WheelItem> _wheelItems;
+        [SerializeField] private SpinBaseItemData spinBaseItemData;
+        [SerializeField] private SpinItemData _spinItemData;
+        [SerializeField] private WheelData _wheelData;
+       [SerializeField] private List<WheelItem> _wheelItems;
 
         private void Start()
         {
-            CreateToStartSpin();
+            SetWheelToStartSpin();
         }
         
-        private void CreateToStartSpin()
+        private void SetWheelToStartSpin()
         {
             for (int i = 0; i < _wheelItems.Count; i++)
             {
-                _wheelItems[i].SetWheelItemImage(wheelData.items[i].ItemIcon);
+                if (CheckAvaibleWheelItem(_wheelData.WheelItems[i]))
+                {
+                    _wheelItems[i].SetWheelItemImage(_wheelData.WheelItems[i].ItemIcon);
+                }
             }
+        }
+
+        private bool CheckAvaibleWheelItem(WheelSliceData wheelData)
+        {
+            if (_spinItemData.GetSpinTypeOfSprite(wheelData.ItemIcon)!=SpinType.Bronze)
+            {
+                return false;
+            }
+            
+            return true;
         }
 
         private void CreateSpin(SpinType spinType)
         {
-            ISpinTypeStrategy strategy = SpinTypeStrategyFactory.CreateStrategy(spinType, _spinCreatorData,_inventoryData);
+            ISpinTypeStrategy strategy = SpinTypeStrategyFactory.CreateStrategy(spinType, spinBaseItemData,_spinItemData);
             var (spinBaseImage, spinIndicatorImage) = strategy.GetBaseAndIndicatorSprites();
             _spineBaseImage.sprite = spinBaseImage;
             _indicatorImage.sprite = spinIndicatorImage;

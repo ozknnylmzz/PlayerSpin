@@ -1,19 +1,20 @@
-
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Player.Enum;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Player.Data
 {
     [CreateAssetMenu(fileName = "WheelData", menuName = "WheelData/Wheel Data")]
     public class WheelData : ScriptableObject
     {
-        public WheelSlice[] items; 
-        
-        public WheelSlice FindWheelSliceByAngle(float targetAngle)
+        public WheelSliceData[] WheelItems;
+
+        public WheelSliceData FindWheelSliceByAngle(float targetAngle)
         {
-            foreach (var slice in items)
+            foreach (var slice in WheelItems)
             {
                 if (slice.MinAngle <= targetAngle && targetAngle < slice.MaxAngle)
                 {
@@ -21,32 +22,64 @@ namespace Player.Data
                 }
             }
 
+            if (targetAngle>350 &&targetAngle <360)
+            {
+                return WheelItems.First(data =>data.ItemName.Contains(Constants.Gold));
+            }
+
             return null;
         }
     }
-    
+
     [Serializable]
-    public class WheelSlice
+    public class WheelSliceData
     {
         [field: SerializeField] public int SlotNo { get; private set; }
         [field: SerializeField] public int MinAngle { get; private set; }
         [field: SerializeField] public int MaxAngle { get; private set; }
-        public SpinType SpinType;
-        public string ItemName;
-        public Sprite ItemIcon;  
-        public int Quantity;
-      
 
-        public WheelSlice(string name, Sprite icon, int quantity,SpinType spinType,int slotNo,int minAngle,int maxAngle)
+        [SerializeField] private Sprite itemIcon;
+
+        public SpinType SpinType;
+        [FormerlySerializedAs("Quantity")] public int Amount;
+
+        public string ItemName
         {
-            ItemName = name;
-            ItemIcon = icon;
-            Quantity = quantity;
-            SpinType = spinType;
+            get
+            {
+                if (itemIcon == null)
+                {
+                    Debug.LogError("Sprite is missing. Please assign a Sprite to the ItemIcon.");
+                    return "";
+                }
+                return itemIcon.name;
+            }
+        }
+
+        public Sprite ItemIcon
+        {
+            get { return itemIcon; }
+            set { itemIcon = value; }
+        }
+
+        public WheelSliceData(int slotNo, int minAngle, int maxAngle, Sprite icon, int amount, SpinType spinType)
+        {
             SlotNo = slotNo;
             MinAngle = minAngle;
             MaxAngle = maxAngle;
+            ItemIcon = icon;
+            Amount = amount;
+            SpinType = spinType;
+        }
+
+        public bool CheckGrenadeItem()
+        {
+            if (ItemName.Contains(Constants.Grenade))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
-

@@ -15,14 +15,8 @@ namespace Player.Spin
         [SerializeField] private float _minRange;
         [SerializeField] private float _maxRange;
         [SerializeField] private Sprite[] _sprites;
-        public WheelData wheelData;
-    
 
-        private void Start()
-        {
-           
-        }
-        
+
         public void SetWheelItemImage(Sprite wheelItemImage)
         {
             _wheelItemImage.sprite=wheelItemImage;

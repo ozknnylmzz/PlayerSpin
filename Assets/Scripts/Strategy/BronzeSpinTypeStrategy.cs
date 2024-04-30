@@ -7,22 +7,22 @@ namespace Player.Spin.Strategy
 {
     public class BronzeSpinTypeStrategy : ISpinTypeStrategy
     {
-        private SpinCreatorData _spinCreatorData;
-        private InventoryData _inventoryData;
-        public BronzeSpinTypeStrategy(SpinCreatorData spinCreatorData,InventoryData inventoryData)
+        private SpinBaseItemData _spinBaseItemData;
+        private SpinItemData _spinItemData;
+        public BronzeSpinTypeStrategy(SpinBaseItemData spinBaseItemData,SpinItemData spinItemData)
         {
-            _spinCreatorData = spinCreatorData;
-            _inventoryData = inventoryData;
+            _spinBaseItemData = spinBaseItemData;
+            _spinItemData = spinItemData;
         }
 
         public (Sprite baseImage, Sprite indicatorImage) GetBaseAndIndicatorSprites()
         {
-            return (_spinCreatorData.UISpinBronze.UiSpinBronzeBase, _spinCreatorData.UISpinBronze.UiSpinBronzeIndicator);
+            return (_spinBaseItemData.UISpinBronze.UiSpinBronzeBase, _spinBaseItemData.UISpinBronze.UiSpinBronzeIndicator);
         }
 
         public List<Sprite>GetWheelItems()
         {
-            return _inventoryData.GetSpritesByType(SpinType.Bronze);
+            return _spinItemData.GetSpritesByType(SpinType.Bronze);
         }
     }
 }

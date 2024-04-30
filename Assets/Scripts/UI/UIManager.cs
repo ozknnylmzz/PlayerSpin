@@ -14,12 +14,22 @@ namespace Player.UI
         {
             EventManager<PanelType>.Subscribe(UIEvents.OnOpenPanel,OpenPanel);
             EventManager<PanelType>.Subscribe(UIEvents.OnClosePanel,ClosePanel);
+            
+            foreach (var uiControllerBase in _panels)
+            {
+                uiControllerBase.Subscribe();
+            }
         }
 
         private void OnDisable()
         {
             EventManager<PanelType>.Unsubscribe(UIEvents.OnOpenPanel,OpenPanel);
             EventManager<PanelType>.Unsubscribe(UIEvents.OnClosePanel,ClosePanel);
+            
+            foreach (var uiControllerBase in _panels)
+            {
+                uiControllerBase.Unsubscribe();
+            }
         }
 
         public UIControllerBase GetPanel(PanelType panelType)

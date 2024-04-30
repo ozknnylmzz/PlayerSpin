@@ -1,16 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Player.Data
 {
     public class DataManager : PersistenceSingleton<DataManager>
-    {
-        private InventoryData _inventoryData;
+    { 
+        public Inventory Inventory;
         
-        public const int BronzeRound = 5;
-        public const int GoldenRound = 30;
-
         public int CurrentRound;
         
         public void IncreaseRound()
@@ -25,7 +24,7 @@ namespace Player.Data
 
         public bool  CheckBronzeRoundData()
         {
-            if (CurrentRound==BronzeRound)
+            if (CurrentRound==Constants.BronzeRound)
             {
                 return   true;
             }
@@ -34,12 +33,32 @@ namespace Player.Data
         }
         public bool  CheckGoldenRoundData()
         {
-            if (CurrentRound==GoldenRound)
+            if (CurrentRound==Constants.GoldenRound)
             {
                 return   true;
             }
 
             return false;
+        }
+
+        public void SetCoin(int amount)
+        {
+            DataSaver.SetData(Constants.Coin,amount);
+        }
+
+        public int GetCoin()
+        {
+            return DataSaver.GetData(Constants.Coin,Constants.StartCoin);
+        }
+        
+        public void SetMoney(int amount)
+        {
+            DataSaver.SetData(Constants.Money,amount);
+        }
+        
+        public int GetMoney()
+        {
+            return DataSaver.GetData(Constants.Money,Constants.StartMoney);
         }
 
     }

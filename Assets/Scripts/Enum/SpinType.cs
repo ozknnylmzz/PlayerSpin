@@ -17,21 +17,19 @@ namespace Player.Enum
     {
         OnOpenPanel,
         OnClosePanel,
+        OnEarnedReward
+        
     }
 
     public enum PanelType
     {
         SuccesPanel,
-        FailPanel
+        FailedPanel
     }
 
-    public enum SpinItemType
+    public enum SpinStateType
     {
-        Cash,
-        Gold,
-        HelmetPumpkin,
-        BayonetEasterTime
-        
+        OnIdleState
     }
 }
 

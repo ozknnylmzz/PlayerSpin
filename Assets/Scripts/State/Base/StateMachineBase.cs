@@ -7,13 +7,19 @@ namespace Player.Spin.State
     public abstract class StateMachineBase : MonoBehaviour
     {
         public IState CurrentState { get; private set; }
-        
+        public IState _previousState;
+
         public void ChangeState(IState newState)
         {
-            if (CurrentState == newState || CurrentState == null)
+            if (CurrentState == newState )
                 return;
             
-            CurrentState.Exit();
+            if (CurrentState != null)
+                CurrentState.Exit();
+            
+            if (_previousState != null)
+                _previousState = CurrentState;
+            
             CurrentState = newState;
             CurrentState.Enter();
         }

@@ -8,24 +8,24 @@ namespace Player.Spin.Strategy
 {
     public class SilverSpinTypeStrategy : ISpinTypeStrategy
     {
-        private SpinCreatorData _spinCreatorData;
-        private InventoryData _inventoryData;
+        private SpinBaseItemData _spinBaseItemData;
+        private Data.SpinItemData _spinItemData;
 
 
-        public SilverSpinTypeStrategy(SpinCreatorData spinCreatorData,InventoryData inventoryData)
+        public SilverSpinTypeStrategy(SpinBaseItemData spinBaseItemData,Data.SpinItemData spinItemData)
         {
-            _spinCreatorData = spinCreatorData;
-            _inventoryData = inventoryData;
+            _spinBaseItemData = spinBaseItemData;
+            _spinItemData = spinItemData;
         }
 
         public (Sprite baseImage, Sprite indicatorImage) GetBaseAndIndicatorSprites()
         {
-            return (_spinCreatorData.UISpinSilver.UiSpinSilverBase, _spinCreatorData.UISpinSilver.UiSpinSilverIndicator);
+            return (_spinBaseItemData.UISpinSilver.UiSpinSilverBase, _spinBaseItemData.UISpinSilver.UiSpinSilverIndicator);
         }
 
         public List<Sprite> GetWheelItems()
         {
-            return _inventoryData.GetSpritesByType(SpinType.Silver);
+            return _spinItemData.GetSpritesByType(SpinType.Silver);
         }
     }
 }

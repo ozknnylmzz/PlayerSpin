@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Player.Spin
+namespace Player.da
 {
     [CreateAssetMenu(fileName = "SpinItemData", menuName = "Spin/Spin Item Data")]
     public class SpinItemData : ScriptableObject
