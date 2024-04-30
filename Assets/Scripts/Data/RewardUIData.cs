@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Player.UI.Reward
 {
-    [CreateAssetMenu(fileName = "RewardUIData", menuName = "RewardUI/RewardUI Data")]
+    [CreateAssetMenu(fileName = "UI", menuName = "RewardUI/RewardUI Data")]
 
     public class RewardUIData : ScriptableObject
     {

@@ -29,6 +29,7 @@ namespace Player.Spin.State
             _spinButton.interactable = false;
             DataManager.Instance.IncreaseRound();
             Tween spinTween = _spin.PlaySpin();
+            EventManager.Execute(UIEvents.OnPlaySpin);
             spinTween.OnComplete(
                 () =>
                 {
@@ -36,6 +37,7 @@ namespace Player.Spin.State
                     ResultSpin(_spin.SpinObject.localEulerAngles.z);
                     CheckSafeArea();
                 });
+            
         }
 
         public void Exit()

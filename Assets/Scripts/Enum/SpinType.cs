@@ -17,8 +17,8 @@ namespace Player.Enum
     {
         OnOpenPanel,
         OnClosePanel,
-        OnEarnedReward
-        
+        OnEarnedReward,
+        OnPlaySpin,
     }
 
     public enum PanelType
