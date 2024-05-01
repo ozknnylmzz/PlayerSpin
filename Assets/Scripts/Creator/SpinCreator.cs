@@ -1,11 +1,8 @@
-using System;
 using System.Collections.Generic;
 using Player.Data;
 using Player.Enum;
 using Player.Spin.Strategy;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Player.Spin.Creator
@@ -17,61 +14,57 @@ namespace Player.Spin.Creator
 
         [SerializeField] private SpinBaseItemData spinBaseItemData;
         [SerializeField] private SpinItemData _spinItemData;
-        [SerializeField] private WheelData _wheelData;
-       [SerializeField] private List<WheelItem> _wheelItems;
+        [SerializeField] private List<WheelItem> _wheelItems;
 
         private void Start()
         {
             SetWheelToStartSpin();
         }
-        
+
         private void SetWheelToStartSpin()
         {
             for (int i = 0; i < _wheelItems.Count; i++)
             {
-                if (CheckAvaibleWheelItem(_wheelData.WheelItems[i]))
+                if (CheckAvaibleWheelItem(DataManager.Instance.WheelData.WheelItems[i]))
                 {
-                    _wheelItems[i].SetWheelItemImage(_wheelData.WheelItems[i].ItemIcon);
+                    _wheelItems[i].SetWheelItemImage(DataManager.Instance.WheelData.WheelItems[i].ItemIcon);
                 }
             }
         }
 
         private bool CheckAvaibleWheelItem(WheelSliceData wheelData)
         {
-            if (_spinItemData.GetSpinTypeOfSprite(wheelData.ItemIcon)!=SpinType.Bronze)
+            if (_spinItemData.GetSpinTypeOfSprite(wheelData.ItemIcon) != SpinType.Bronze)
             {
                 return false;
             }
-            
+
             return true;
         }
 
         public void CreateSpin(SpinType spinType)
         {
-            ISpinTypeStrategy strategy = SpinTypeStrategyFactory.CreateStrategy(spinType, spinBaseItemData,_spinItemData);
+            ISpinTypeStrategy strategy =
+                SpinTypeStrategyFactory.CreateStrategy(spinType, spinBaseItemData, _spinItemData);
             var (spinBaseImage, spinIndicatorImage) = strategy.GetBaseAndIndicatorSprites();
             _spineBaseImage.sprite = spinBaseImage;
             _indicatorImage.sprite = spinIndicatorImage;
-
-            List<Sprite> wheelItems = strategy.GetWheelItems();
             
+            UpdateWheelData(strategy);
+        }
+
+        private void UpdateWheelData(ISpinTypeStrategy strategy)
+        {
+            List<Sprite> wheelItems = strategy.GetWheelSpites();
+            // List<int> wheelAmounts= strategy.GetWheelAmount();
             wheelItems.Shuffle();
 
             for (int i = 0; i < _wheelItems.Count; i++)
             {
                 _wheelItems[i].SetWheelItemImage(wheelItems[i]);
+                DataManager.Instance.WheelData.WheelItems[i].ItemIcon = wheelItems[i];
+                // DataManager.Instance.WheelData.WheelItems[i].Amount = wheelAmounts[i];
             }
         }
-        
-        private void OnEnable()
-        {
-            // EventManager<SpinType>.Subscribe(SpinEvents.OnState, CreateSpin);
-        }
-
-        private void OnDisable()
-        {
-            // EventManager<SpinType>.Unsubscribe(SpinEvents.OnState, CreateSpin);
-        }
-       
     }
 }

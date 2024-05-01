@@ -10,6 +10,7 @@ namespace Player.Spin
         [field:SerializeField] public float GapAngle { get; private set; }
         [field:SerializeField] public int MinSpins { get; private set; }
         [field:SerializeField] public int MaxSpins { get; private set; }
+        [field:SerializeField] public int LockDelayTime { get; private set; }
 
     }
 }

@@ -9,10 +9,10 @@ namespace Player.Spin.Strategy
     public class SilverSpinTypeStrategy : ISpinTypeStrategy
     {
         private SpinBaseItemData _spinBaseItemData;
-        private Data.SpinItemData _spinItemData;
+        private SpinItemData _spinItemData;
 
 
-        public SilverSpinTypeStrategy(SpinBaseItemData spinBaseItemData,Data.SpinItemData spinItemData)
+        public SilverSpinTypeStrategy(SpinBaseItemData spinBaseItemData,SpinItemData spinItemData)
         {
             _spinBaseItemData = spinBaseItemData;
             _spinItemData = spinItemData;
@@ -23,7 +23,7 @@ namespace Player.Spin.Strategy
             return (_spinBaseItemData.UISpinSilver.UiSpinSilverBase, _spinBaseItemData.UISpinSilver.UiSpinSilverIndicator);
         }
 
-        public List<Sprite> GetWheelItems()
+        public List<Sprite> GetWheelSpites()
         {
             return _spinItemData.GetSpritesByType(SpinType.Silver);
         }

@@ -1,28 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using Player.Enum;
+using Player.Spin.Creator;
 using UnityEngine;
 
 namespace Player.Spin.State
 {
     public class SpinBronzeState :IState
     {
-        private SpinController _spinController;
+        private SpinState _spinState;
+        private SpinCreator _spinCreator;
 
         private SpinType _spinType = SpinType.Bronze;
-        public SpinBronzeState(SpinController spinController)
+        public SpinBronzeState(SpinState spinState,SpinCreator spinCreator)
         {
-            _spinController = spinController;
+            _spinState = spinState;
+            _spinCreator = spinCreator;
         }
 
         public void Enter()
         {
-            EventManager<PanelType>.Execute(UIEvents.OnOpenPanel,PanelType.SuccesPanel);
+            _spinCreator.CreateSpin(_spinType);
+            Debug.Log("bronze state enter");
         }
 
         public void Exit()
         {
-            EventManager<PanelType>.Execute(UIEvents.OnClosePanel,PanelType.SuccesPanel);
+            Debug.Log("bronze state enter");
+
         }
     }
 }

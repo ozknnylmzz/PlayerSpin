@@ -16,6 +16,7 @@ namespace Player.UI
 
         public override void Open()
         {
+            Debug.Log("failed panel open");
             gameObject.SetActive(true);
         }
 
@@ -39,7 +40,6 @@ namespace Player.UI
         private void ResetItem()
         {
             DataManager.Instance.Inventory.ResetItems();
-            EventManager.Execute(SpinStateType.OnIdleState);
             EventManager.Execute(PanelType.FailedPanel);
             Close();
         }

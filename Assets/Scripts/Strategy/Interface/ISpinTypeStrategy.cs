@@ -6,7 +6,8 @@ namespace Player.Spin.Strategy
     public interface ISpinTypeStrategy
     {
         (Sprite baseImage, Sprite indicatorImage) GetBaseAndIndicatorSprites();
-        List<Sprite> GetWheelItems();
+        List<Sprite> GetWheelSpites();
+        // List<int> GetWheelAmount();
     }
 }
 

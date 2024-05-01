@@ -13,6 +13,7 @@ namespace Player.UI.Reward
         [SerializeField] private RewardUIData _rewardUIData;
         [SerializeField] private RectTransform _content;
         private List<RewardItem> _rewardItems=new ();
+        
         private void OnEnable()
         {
             EventManager< Data.Reward>.Subscribe(UIEvents.OnEarnedReward,SetRewardText);

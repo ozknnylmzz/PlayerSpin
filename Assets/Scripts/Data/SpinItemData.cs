@@ -69,7 +69,7 @@ namespace Player.Data
     {
         SpinType SpinType { get; }
         Sprite SpinItemImage { get; }
-        string ItemName { get; }
+        int  Amount { get; }
     }
 
     [Serializable]
@@ -77,20 +77,20 @@ namespace Player.Data
     {
         public SpinType SpinType => SpinType.Bronze;
         [field: SerializeField]   public Sprite SpinItemImage { get; private set; }
-        [field: SerializeField]    public string ItemName{ get; private set; }
+        [field: SerializeField]    public int Amount{ get; private set; }
     }
     [Serializable]
     public class UiSpinSilverItems:IUiSpinItem
     {
         public SpinType SpinType => SpinType.Silver;
         [field: SerializeField] public Sprite SpinItemImage { get; private set; }
-        [field: SerializeField] public string ItemName{ get; private set; }
+        [field: SerializeField] public int Amount{ get; private set; }
     }
     [Serializable]
     public class UiSpinGoldenItems:IUiSpinItem
     {
         public SpinType SpinType => SpinType.Golden;
         [field: SerializeField] public Sprite SpinItemImage { get; private set; }
-        [field: SerializeField] public string ItemName{ get; private set; }
+        [field: SerializeField] public int Amount{ get; private set; }
     }
 }

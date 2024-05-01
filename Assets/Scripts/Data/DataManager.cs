@@ -9,7 +9,7 @@ namespace Player.Data
     public class DataManager : PersistenceSingleton<DataManager>
     { 
         public Inventory Inventory;
-        
+        public WheelData WheelData;
         public int CurrentRound;
         
         public void IncreaseRound()
@@ -24,7 +24,7 @@ namespace Player.Data
 
         public bool  CheckSilverRoundData()
         {
-            if (CurrentRound==Constants.SilverRound)
+            if (CurrentRound%Constants.SilverRound==0)
             {
                 return   true;
             }
@@ -33,7 +33,7 @@ namespace Player.Data
         }
         public bool  CheckGoldenRoundData()
         {
-            if (CurrentRound==Constants.GoldenRound)
+            if (CurrentRound%Constants.GoldenRound==0)
             {
                 return   true;
             }

@@ -304,6 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Inventory: {fileID: 11400000, guid: 86a94860b29ad401aad69873da1db587, type: 2}
+  WheelData: {fileID: 11400000, guid: 48520fdeca5a549ccbec50f84620bf1d, type: 2}
   CurrentRound: 1
 --- !u!4 &64128311
 Transform:
@@ -2980,6 +2981,7 @@ GameObject:
   - component: {fileID: 1270502593}
   - component: {fileID: 1270502594}
   - component: {fileID: 1270502595}
+  - component: {fileID: 1270502596}
   m_Layer: 5
   m_Name: UI_Spin
   m_TagString: Untagged
@@ -3032,9 +3034,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdca4c7b3ceb049ab84fe4e58b2d8ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spin: {fileID: 2065415249}
-  _spinButton: {fileID: 1069570222}
-  _wheelData: {fileID: 11400000, guid: 48520fdeca5a549ccbec50f84620bf1d, type: 2}
   _spinCreator: {fileID: 1270502595}
 --- !u!114 &1270502595
 MonoBehaviour:
@@ -3052,7 +3051,6 @@ MonoBehaviour:
   _indicatorImage: {fileID: 1164562692}
   spinBaseItemData: {fileID: 11400000, guid: fecd1edd6897447f7b3b9a736500dbe9, type: 2}
   _spinItemData: {fileID: 11400000, guid: d1c383e906564405ab0ba6cd05722057, type: 2}
-  _wheelData: {fileID: 11400000, guid: 48520fdeca5a549ccbec50f84620bf1d, type: 2}
   _wheelItems:
   - {fileID: 1659944788}
   - {fileID: 2120499275}
@@ -3062,6 +3060,22 @@ MonoBehaviour:
   - {fileID: 1475594548}
   - {fileID: 1855170571}
   - {fileID: 659531581}
+--- !u!114 &1270502596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270502591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2038a9d9092304e49930cc68da6e8be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spinState: {fileID: 1270502594}
+  _spinSettings: {fileID: 11400000, guid: 498509f8151164c5c9c7e0038f327bd6, type: 2}
+  _spinObject: {fileID: 2065415246}
+  _spinButton: {fileID: 1069570222}
 --- !u!1 &1352129097
 GameObject:
   m_ObjectHideFlags: 0
@@ -4727,7 +4741,6 @@ GameObject:
   - component: {fileID: 2065415246}
   - component: {fileID: 2065415248}
   - component: {fileID: 2065415247}
-  - component: {fileID: 2065415249}
   m_Layer: 5
   m_Name: UI_spin_object
   m_TagString: Untagged
@@ -4801,20 +4814,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2065415245}
   m_CullTransparentMesh: 1
---- !u!114 &2065415249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065415245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50bde7465ef8f4de890c709234e13815, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spinSettings: {fileID: 11400000, guid: 498509f8151164c5c9c7e0038f327bd6, type: 2}
-  _spinObject: {fileID: 2065415246}
 --- !u!1 &2120499271
 GameObject:
   m_ObjectHideFlags: 0

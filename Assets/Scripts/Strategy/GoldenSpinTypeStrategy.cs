@@ -21,7 +21,7 @@ public class GoldenSpinTypeStrategy : ISpinTypeStrategy
         return (_spinBaseItemData.UISpinGolden.UiSpinGoldenBase, _spinBaseItemData.UISpinGolden.UiSpinGoldenIndicator);
     }
 
-    public List<Sprite> GetWheelItems()
+    public List<Sprite> GetWheelSpites()
     {
         return _spinItemData.GetSpritesByType(SpinType.Golden);
     }

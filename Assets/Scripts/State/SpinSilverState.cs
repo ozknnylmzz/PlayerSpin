@@ -8,13 +8,13 @@ namespace Player.Spin.State
 {
     public class SpinSilverState : IState
     {
-        private SpinController _spinController;
+        private SpinState _spinState;
         private SpinCreator _spinCreator;
         private SpinType _spinType = SpinType.Silver;
         
-        public SpinSilverState(SpinController spinController,SpinCreator spinCreator)
+        public SpinSilverState(SpinState spinState,SpinCreator spinCreator)
         {
-            _spinController = spinController;
+            _spinState = spinState;
             _spinCreator = spinCreator;
         }
 

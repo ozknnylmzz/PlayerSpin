@@ -26,10 +26,5 @@ namespace Player.Enum
         SuccesPanel,
         FailedPanel
     }
-
-    public enum SpinStateType
-    {
-        OnIdleState
-    }
 }
 
