@@ -20,15 +20,12 @@ namespace Player.Spin.Strategy
             return (_spinBaseItemData.UISpinBronze.UiSpinBronzeBase, _spinBaseItemData.UISpinBronze.UiSpinBronzeIndicator);
         }
 
-        public List<Sprite>GetWheelSpites()
+        public List<WheelInfo>GetWheelInfo()
         {
             return _spinItemData.GetSpritesByType(SpinType.Bronze);
         }
 
-        public List<int> GetWheelAmount()
-        {
-            throw new System.NotImplementedException();
-        }
+        
     }
 }
 

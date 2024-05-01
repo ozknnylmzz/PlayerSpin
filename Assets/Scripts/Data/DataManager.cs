@@ -20,12 +20,14 @@ namespace Player.Data
         public void ResetData()
         {
             CurrentRound = 1;
+            Inventory.ResetItems();
         }
 
         public bool  CheckSilverRoundData()
         {
             if (CurrentRound%Constants.SilverRound==0)
             {
+                Debug.Log("CurrentRound");
                 return   true;
             }
 

@@ -23,7 +23,7 @@ namespace Player.Spin.Strategy
             return (_spinBaseItemData.UISpinSilver.UiSpinSilverBase, _spinBaseItemData.UISpinSilver.UiSpinSilverIndicator);
         }
 
-        public List<Sprite> GetWheelSpites()
+        public List<WheelInfo> GetWheelInfo()
         {
             return _spinItemData.GetSpritesByType(SpinType.Silver);
         }

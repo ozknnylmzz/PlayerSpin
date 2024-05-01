@@ -34,8 +34,11 @@ namespace Player.Spin.Creator
 
         private bool CheckAvaibleWheelItem(WheelSliceData wheelData)
         {
-            if (_spinItemData.GetSpinTypeOfSprite(wheelData.ItemIcon) != SpinType.Bronze)
+            SpinType spinType = _spinItemData.GetSpinTypeOfSprite(wheelData.ItemIcon);
+            if (spinType!= SpinType.Bronze)
             {
+                Debug.LogError($"The selected sprite at slot number {wheelData.SlotNo} is of type {spinType}." +
+                               $" Please select a sprite of type Bronze from the SpinItemData.");
                 return false;
             }
 
@@ -55,15 +58,14 @@ namespace Player.Spin.Creator
 
         private void UpdateWheelData(ISpinTypeStrategy strategy)
         {
-            List<Sprite> wheelItems = strategy.GetWheelSpites();
-            // List<int> wheelAmounts= strategy.GetWheelAmount();
+            List<WheelInfo> wheelItems = strategy.GetWheelInfo();
             wheelItems.Shuffle();
 
             for (int i = 0; i < _wheelItems.Count; i++)
             {
-                _wheelItems[i].SetWheelItemImage(wheelItems[i]);
-                DataManager.Instance.WheelData.WheelItems[i].ItemIcon = wheelItems[i];
-                // DataManager.Instance.WheelData.WheelItems[i].Amount = wheelAmounts[i];
+                _wheelItems[i].SetWheelItemImage(wheelItems[i].SpinItemImage);
+                DataManager.Instance.WheelData.WheelItems[i].ItemIcon = wheelItems[i].SpinItemImage;
+                DataManager.Instance.WheelData.WheelItems[i].Amount = wheelItems[i].Amount;
             }
         }
     }

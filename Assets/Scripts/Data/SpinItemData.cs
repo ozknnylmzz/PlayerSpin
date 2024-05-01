@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Player.Data;
 using Player.Enum;
 using UnityEngine;
 
@@ -13,84 +14,91 @@ namespace Player.Data
         public UiSpinSilverItems[] UiSpinSilverItems;
         public UiSpinGoldenItems[] UiSpinGoldenItems;
 
-        public List<Sprite> GetSpritesByType(SpinType spinType)
+        public List<WheelInfo> GetSpritesByType(SpinType spinType)
         {
-            List<Sprite> sprites = new List<Sprite>();
+            List<WheelInfo> sprites = new List<WheelInfo>();
             switch (spinType)
             {
                 case SpinType.Bronze:
                     return GetSpritesFromItems(UiSpinBronzeItems);
-                    
+
                 case SpinType.Silver:
                     return GetSpritesFromItems(UiSpinSilverItems);
-                
+
                 case SpinType.Golden:
                     return GetSpritesFromItems(UiSpinGoldenItems);
             }
-            
+
             return sprites;
         }
-        
-        private List<Sprite> GetSpritesFromItems<T>(T[] spinItems) where T : IUiSpinItem
+
+        private List<WheelInfo> GetSpritesFromItems<T>(T[] spinItems) where T : IUiSpinItem
         {
-            List<Sprite> sprites = new List<Sprite>();
+            List<WheelInfo> wheelInfos = new List<WheelInfo>();
             foreach (var spinItem in spinItems)
             {
-                sprites.Add(spinItem.SpinItemImage);
+                wheelInfos.Add(spinItem.WheelInfo);
             }
-            return sprites;
+
+            return wheelInfos;
         }
-        
+
         public SpinType GetSpinTypeOfSprite(Sprite sprite)
         {
             foreach (var item in UiSpinBronzeItems)
             {
-                if (item.SpinItemImage == sprite)
+                if (item.WheelInfo.SpinItemImage == sprite)
                     return item.SpinType;
             }
 
             foreach (var item in UiSpinSilverItems)
             {
-                if (item.SpinItemImage == sprite)
+                if (item.WheelInfo.SpinItemImage == sprite)
                     return item.SpinType;
             }
 
             foreach (var item in UiSpinGoldenItems)
             {
-                if (item.SpinItemImage == sprite)
+                if (item.WheelInfo.SpinItemImage == sprite)
                     return item.SpinType;
             }
-
+      
+            Debug.LogError("Check the wheel data and assign appropriate sprites to the silver type.");
             throw new Exception("Sprite not found in any SpinType list.");
         }
     }
-    
+
     public interface IUiSpinItem
     {
-        SpinType SpinType { get; }
-        Sprite SpinItemImage { get; }
-        int  Amount { get; }
+        WheelInfo WheelInfo { get; }
     }
 
     [Serializable]
-    public class UiSpinBronzeItems:IUiSpinItem
+    public class UiSpinBronzeItems : IUiSpinItem
     {
         public SpinType SpinType => SpinType.Bronze;
-        [field: SerializeField]   public Sprite SpinItemImage { get; private set; }
-        [field: SerializeField]    public int Amount{ get; private set; }
+        [field: SerializeField] public WheelInfo WheelInfo { get; private set; }
     }
+    
     [Serializable]
-    public class UiSpinSilverItems:IUiSpinItem
+    public class UiSpinSilverItems : IUiSpinItem
     {
         public SpinType SpinType => SpinType.Silver;
-        [field: SerializeField] public Sprite SpinItemImage { get; private set; }
-        [field: SerializeField] public int Amount{ get; private set; }
+
+        [field: SerializeField] public WheelInfo WheelInfo { get; private set; }
     }
+
     [Serializable]
-    public class UiSpinGoldenItems:IUiSpinItem
+    public class UiSpinGoldenItems : IUiSpinItem
     {
         public SpinType SpinType => SpinType.Golden;
+        [field: SerializeField] public WheelInfo WheelInfo { get; private set; }
+    }
+
+    [Serializable]
+    public class WheelInfo
+    {
         [field: SerializeField] public Sprite SpinItemImage { get; private set; }
-        [field: SerializeField] public int Amount{ get; private set; }
+        [field: SerializeField] public int Amount { get; private set; }
     }
 }

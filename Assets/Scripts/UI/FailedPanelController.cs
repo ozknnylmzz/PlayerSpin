@@ -39,7 +39,8 @@ namespace Player.UI
 
         private void ResetItem()
         {
-            DataManager.Instance.Inventory.ResetItems();
+            
+            DataManager.Instance.ResetData();
             EventManager.Execute(PanelType.FailedPanel);
             Close();
         }

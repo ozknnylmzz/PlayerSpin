@@ -70,7 +70,7 @@ namespace Player.UI.Round
         private void OnDisable()
         {
             EventManager.Unsubscribe(UIEvents.OnPlaySpin,SetIncreaseRound);
-            EventManager.Subscribe(PanelType.FailedPanel,ResetRoundProgress);
+            EventManager.Unsubscribe(PanelType.FailedPanel,ResetRoundProgress);
         }
 
     }

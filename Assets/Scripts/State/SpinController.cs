@@ -80,11 +80,11 @@ namespace Player.Spin.State
             
             if (_spinType!=SpinType.Bronze)
             {
+                _spinType = SpinType.Bronze;
                 _spinState.ChangeState(_spinState.SpinBronzeState);
                 return;
             }
-
-            _spinButton.interactable = true;
+Debug.Log("current round"+DataManager.Instance.CurrentRound);
             if (DataManager.Instance.CheckSilverRoundData())
             {
                 _spinType = SpinType.Silver;
