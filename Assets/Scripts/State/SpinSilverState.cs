@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Player.Enum;
+using Player.Spin.Creator;
 using UnityEngine;
 
 namespace Player.Spin.State
@@ -8,22 +9,24 @@ namespace Player.Spin.State
     public class SpinSilverState : IState
     {
         private SpinController _spinController;
-
-        private SpinType _spinType = SpinType.Bronze;
+        private SpinCreator _spinCreator;
+        private SpinType _spinType = SpinType.Silver;
         
-        public SpinSilverState(SpinController spinController)
+        public SpinSilverState(SpinController spinController,SpinCreator spinCreator)
         {
             _spinController = spinController;
+            _spinCreator = spinCreator;
         }
 
         public void Enter()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("silver state enter");
+            _spinCreator.CreateSpin(_spinType);
         }
 
         public void Exit()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("silver state exit");
         }
     }
 }

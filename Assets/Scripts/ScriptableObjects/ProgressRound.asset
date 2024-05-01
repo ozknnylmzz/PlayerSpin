@@ -15,6 +15,7 @@ MonoBehaviour:
   <RoundTextDistance>k__BackingField: -65
   <RoundTourDuration>k__BackingField: 1
   <RoundTextCount>k__BackingField: 11
+  <RoundStartPositon>k__BackingField: 193
   <RoundTextPrefab>k__BackingField: {fileID: 4638095925139467414, guid: 4d414f2d935dd47e8a9f0e2f6a34421e, type: 3}
   <SilverFont>k__BackingField: {fileID: 11400000, guid: 6aa9c1af41ef742369441db4b954cfbf, type: 2}
   <GoldenFont>k__BackingField: {fileID: 11400000, guid: ea1ad71cf8f494406b875d21c27a37c9, type: 2}

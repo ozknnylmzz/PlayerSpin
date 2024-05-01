@@ -46,7 +46,7 @@ namespace Player.Spin.Creator
             return true;
         }
 
-        private void CreateSpin(SpinType spinType)
+        public void CreateSpin(SpinType spinType)
         {
             ISpinTypeStrategy strategy = SpinTypeStrategyFactory.CreateStrategy(spinType, spinBaseItemData,_spinItemData);
             var (spinBaseImage, spinIndicatorImage) = strategy.GetBaseAndIndicatorSprites();
@@ -65,12 +65,12 @@ namespace Player.Spin.Creator
         
         private void OnEnable()
         {
-            EventManager<SpinType>.Subscribe(SpinEvents.OnState, CreateSpin);
+            // EventManager<SpinType>.Subscribe(SpinEvents.OnState, CreateSpin);
         }
 
         private void OnDisable()
         {
-            EventManager<SpinType>.Unsubscribe(SpinEvents.OnState, CreateSpin);
+            // EventManager<SpinType>.Unsubscribe(SpinEvents.OnState, CreateSpin);
         }
        
     }

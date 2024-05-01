@@ -54,15 +54,23 @@ namespace Player.UI.Round
 
             }
         }
+
+        private void ResetRoundProgress()
+        {
+            _roundTextPanel.offsetMin = new Vector2(0, _progressRoundData.RoundStartPositon);
+            _roundTextPanel.offsetMax = new Vector2(0, -_progressRoundData.RoundStartPositon);
+        }
         
         private void OnEnable()
         {
             EventManager.Subscribe(UIEvents.OnPlaySpin,SetIncreaseRound);
+            EventManager.Subscribe(PanelType.FailedPanel,ResetRoundProgress);
         }
 
         private void OnDisable()
         {
             EventManager.Unsubscribe(UIEvents.OnPlaySpin,SetIncreaseRound);
+            EventManager.Subscribe(PanelType.FailedPanel,ResetRoundProgress);
         }
 
     }

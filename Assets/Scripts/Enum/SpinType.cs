@@ -8,10 +8,10 @@ namespace Player.Enum
        Golden
     }
 
-    public enum SpinEvents
-    {
-        OnState
-    }
+    // public enum SpinEvents
+    // {
+    //     OnState
+    // }
 
     public enum UIEvents
     {

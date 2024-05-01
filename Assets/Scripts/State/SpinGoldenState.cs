@@ -17,12 +17,13 @@ namespace Player.Spin.State
         }
         public void Enter()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("golden state enter");
         }
 
         public void Exit()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("golden state exit");
+
         }
     }
 }

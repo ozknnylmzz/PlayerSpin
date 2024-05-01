@@ -36,7 +36,7 @@ namespace Player.UI
             _giveUpButton.onClick.RemoveListener(ResetItem);
         }
 
-        public void ResetItem()
+        private void ResetItem()
         {
             DataManager.Instance.Inventory.ResetItems();
             EventManager.Execute(SpinStateType.OnIdleState);

@@ -1,6 +1,7 @@
 using System;
 using Player.Data;
 using Player.Enum;
+using Player.Spin.Creator;
 using Player.Spin.State;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,10 +19,10 @@ namespace Player.Spin
         [SerializeField] private Spin _spin;
         [SerializeField] private Button _spinButton;
         [SerializeField] private WheelData _wheelData;
-        
+        [SerializeField] private SpinCreator _spinCreator;
         private void Awake()
         {
-            SpinSilverState = new SpinSilverState(this);
+            SpinSilverState = new SpinSilverState(this,_spinCreator);
             SpinBronzeState = new SpinBronzeState(this);
             SpinGoldenState = new SpinGoldenState(this);
             SpinIdleState = new SpinIdleState(this);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Constants : MonoBehaviour
 {
-    public const int BronzeRound = 5;
+    public const int SilverRound = 5;
     public const int GoldenRound = 30;
     public const int StartCoin=500;
     public const int StartMoney=3000;

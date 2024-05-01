@@ -22,9 +22,9 @@ namespace Player.Data
             CurrentRound = 1;
         }
 
-        public bool  CheckBronzeRoundData()
+        public bool  CheckSilverRoundData()
         {
-            if (CurrentRound==Constants.BronzeRound)
+            if (CurrentRound==Constants.SilverRound)
             {
                 return   true;
             }
