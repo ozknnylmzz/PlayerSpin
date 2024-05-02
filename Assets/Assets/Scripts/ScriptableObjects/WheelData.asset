@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d334676380c5845918818e85b56d40d1, type: 3}
+  m_Name: WheelData
+  m_EditorClassIdentifier: 
+  WheelItems:
+  - <SlotNo>k__BackingField: 1
+    <MinAngle>k__BackingField: -10
+    <MaxAngle>k__BackingField: 10
+    _itemIcon: {fileID: 21300000, guid: ce7328a2fb097464d948a7f5934e1d34, type: 3}
+    SpinType: 1
+    Amount: 1
+  - <SlotNo>k__BackingField: 2
+    <MinAngle>k__BackingField: 35
+    <MaxAngle>k__BackingField: 55
+    _itemIcon: {fileID: 21300000, guid: 6862ce0e674d9446ca94923802375cdc, type: 3}
+    SpinType: 1
+    Amount: 250
+  - <SlotNo>k__BackingField: 3
+    <MinAngle>k__BackingField: 80
+    <MaxAngle>k__BackingField: 100
+    _itemIcon: {fileID: 21300000, guid: 834a26333429a4596b60bf2c875f9a0c, type: 3}
+    SpinType: 1
+    Amount: 1
+  - <SlotNo>k__BackingField: 4
+    <MinAngle>k__BackingField: 125
+    <MaxAngle>k__BackingField: 145
+    _itemIcon: {fileID: 21300000, guid: d8fed3339ab7841129b9bc663aa29b1c, type: 3}
+    SpinType: 0
+    Amount: 1
+  - <SlotNo>k__BackingField: 5
+    <MinAngle>k__BackingField: 170
+    <MaxAngle>k__BackingField: 190
+    _itemIcon: {fileID: 21300000, guid: f0a711f60993f4b32bd69f94614b8f53, type: 3}
+    SpinType: 1
+    Amount: 1
+  - <SlotNo>k__BackingField: 6
+    <MinAngle>k__BackingField: 215
+    <MaxAngle>k__BackingField: 235
+    _itemIcon: {fileID: 21300000, guid: 1270d37fca3cd4464aa9b41d7d827759, type: 3}
+    SpinType: 1
+    Amount: 250
+  - <SlotNo>k__BackingField: 7
+    <MinAngle>k__BackingField: 260
+    <MaxAngle>k__BackingField: 280
+    _itemIcon: {fileID: 21300000, guid: 6ff945e5d496b4d47b6a3d0d67bfbaf7, type: 3}
+    SpinType: 1
+    Amount: 1
+  - <SlotNo>k__BackingField: 8
+    <MinAngle>k__BackingField: 305
+    <MaxAngle>k__BackingField: 325
+    _itemIcon: {fileID: 21300000, guid: d8fed3339ab7841129b9bc663aa29b1c, type: 3}
+    SpinType: 0
+    Amount: 1
