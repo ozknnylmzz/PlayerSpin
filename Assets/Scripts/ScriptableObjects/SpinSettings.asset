@@ -17,4 +17,4 @@ MonoBehaviour:
   <GapAngle>k__BackingField: 25
   <MinSpins>k__BackingField: 3
   <MaxSpins>k__BackingField: 5
-  <LockDelayTime>k__BackingField: 500
+  <LockDelayTime>k__BackingField: 250

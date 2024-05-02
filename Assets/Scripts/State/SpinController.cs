@@ -19,7 +19,7 @@ namespace Player.Spin.State
         
         private void Play()
         {
-            LockButton(true);
+            LockButtons(true);
             DataManager.Instance.IncreaseRound();
             EventManager.Execute(UIEvents.OnPlaySpin);
             
@@ -59,12 +59,12 @@ namespace Player.Spin.State
 
             if (wheelInfo.CheckGrenadeItem())
             {
-                LockButton(false);
+                LockButtons(false);
                 EventManager<PanelType>.Execute(UIEvents.OnOpenPanel, PanelType.FailedPanel);
                 return;
             }
 
-            DataManager.Instance.Inventory.AddReward(wheelInfo.Amount, wheelInfo.ItemIcon);
+            DataManager.Instance.Inventory.AddReward(wheelInfo.Amount, wheelInfo.ItemIcon,wheelInfo.SpinType);
 
             Reward rewardItem = DataManager.Instance.Inventory.GetReward(wheelInfo.ItemIcon.name);
             EventManager<Reward>.Execute(UIEvents.OnEarnedReward, rewardItem);
@@ -76,7 +76,7 @@ namespace Player.Spin.State
         {
             await Task.Delay(_spinSettings.LockDelayTime);
             
-            LockButton(false);
+            LockButtons(false);
             
             if (_spinType!=SpinType.Bronze)
             {
@@ -84,7 +84,6 @@ namespace Player.Spin.State
                 _spinState.ChangeState(_spinState.SpinBronzeState);
                 return;
             }
-Debug.Log("current round"+DataManager.Instance.CurrentRound);
             if (DataManager.Instance.CheckSilverRoundData())
             {
                 _spinType = SpinType.Silver;
@@ -99,8 +98,9 @@ Debug.Log("current round"+DataManager.Instance.CurrentRound);
             }
         }
 
-        private void LockButton(bool isLock)
+        private void LockButtons(bool isLock)
         {
+            EventManager<bool>.Execute(UIEvents.OnLockExitButton, !isLock);
             _spinButton.interactable = !isLock;
         }
 

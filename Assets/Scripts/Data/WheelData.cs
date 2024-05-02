@@ -24,7 +24,7 @@ namespace Player.Data
 
             if (targetAngle>350 &&targetAngle <360)
             {
-                return WheelItems.First(data =>data.ItemName.Contains(Constants.Gold));
+                return WheelItems[0];
             }
 
             return null;

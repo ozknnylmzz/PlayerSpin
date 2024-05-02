@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: RewardUISettings
   m_EditorClassIdentifier: 
   <RewardPrefab>k__BackingField: {fileID: 1459310339, guid: 8cae8683e611841b180f650194f968f3, type: 3}
+  EarnedRewardItems: []

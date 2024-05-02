@@ -19,12 +19,14 @@ namespace Player.Enum
         OnClosePanel,
         OnEarnedReward,
         OnPlaySpin,
+        OnLockExitButton
     }
 
     public enum PanelType
     {
         SuccesPanel,
-        FailedPanel
+        FailedPanel,
+        ExitConfirmPanel
     }
 }
 

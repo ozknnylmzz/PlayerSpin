@@ -16,12 +16,13 @@ namespace Player.UI
 
         public override void Open()
         {
+            base.Open();
             Debug.Log("failed panel open");
-            gameObject.SetActive(true);
         }
 
         public override void Close()
         {
+            base.Close();
             gameObject.SetActive(false);
         }
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Player.Enum;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -9,17 +10,16 @@ namespace Player.Data
     public class Inventory : ScriptableObject
     {
         public List<Reward> Rewards;
-        public void AddReward( int amount,Sprite rewardIcon)
+        public void AddReward( int amount,Sprite rewardIcon,SpinType rewardType)
         {
             var existingReward = Rewards.Find(r => r.RewardIcon.name == rewardIcon.name);
             if (existingReward != null)
             {
                 existingReward.RewardAmount += amount;
-                existingReward.RewardIcon = rewardIcon;
             }
             else
             {
-                Rewards.Add(new Reward { RewardAmount = amount,RewardIcon = rewardIcon});
+                Rewards.Add(new Reward { RewardAmount = amount,RewardIcon = rewardIcon,RewardType = rewardType});
             }
         }
         
@@ -41,6 +41,7 @@ namespace Player.Data
     {
         public int RewardAmount;
         public Sprite RewardIcon;
+        public SpinType RewardType;
     }
 }
 

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b27b1fb7d0d441e8b9d57b205c7f14e, type: 3}
+  m_Name: SuccessPanel
+  m_EditorClassIdentifier: 
+  <RewardCardPrefab>k__BackingField: {fileID: 5102306637364572503, guid: c2c7901a2f9b945e7afb5b2ba1234d86, type: 3}
+  <BronzeCardColorFrame>k__BackingField: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
+  <SilverCardColorFrame>k__BackingField: {r: 0.34042364, g: 0.4716981, b: 0.39142436, a: 0}
+  <GoldenCardColorFrame>k__BackingField: {r: 0.6320754, g: 0.5387942, b: 0.15205587, a: 0}
