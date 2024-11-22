@@ -3,9 +3,10 @@ namespace Player.Enum
 {
     public enum SpinType 
     {
-       Silver,
-       Bronze,
-       Golden
+       Blue,
+       Purple,
+       Green,
+       Orange
     }
 
     // public enum SpinEvents

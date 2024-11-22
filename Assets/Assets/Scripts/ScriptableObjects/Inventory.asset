@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ab94ae14310f4cdf9ea96219adf467a, type: 3}
   m_Name: Inventory
   m_EditorClassIdentifier: 
-  Rewards: []
+  Rewards:
+  - RewardAmount: 0
+    RewardIcon: {fileID: 0}
+    RewardType: 0

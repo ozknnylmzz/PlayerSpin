@@ -12,33 +12,36 @@ namespace Player.UI.Reward
 {
     public class RewardUIController : MonoBehaviour
     {
-        [SerializeField] private RewardUIData _rewardUIData;
-        [SerializeField] private RectTransform _content;
+        // [SerializeField] private RewardUIData _rewardUIData;
         [SerializeField] private Button _exitButton;
-
-        private List<RewardItem> _rewardItems=new ();
-        
-    
-        private void SetRewardText(Data.Reward reward)
+        [SerializeField] private List<RewardItem> _rewardItems;
+        [SerializeField] private RewardUIData _rewardUIData;
+        private void SetRewardItem(Data.Reward reward)
         {
             if (_rewardUIData!=null)
             {
-                Data.Reward rewardItem = DataManager.Instance.Inventory.GetReward(reward.RewardIcon.name);
-                var existingItem = _rewardUIData.EarnedRewardItems.Find(item => item.RewardIcon.sprite.name.Contains(rewardItem.RewardIcon.name));
-
-                if (reward.RewardIcon.name.Contains(Constants.Grenade))return;
-
-                if (existingItem == null)
+                foreach (var item in _rewardItems)
                 {
-                    var newEarnedItem = Instantiate(_rewardUIData.RewardPrefab, _content);
-                    newEarnedItem.SetRewardItem(reward.RewardIcon,reward.RewardAmount.ToString(),reward.RewardType);
-                     _rewardUIData.EarnedRewardItems.Add(newEarnedItem);
+                    Data.Reward rewardItem = DataManager.Instance.Inventory.GetReward(reward.RewardIcon.name);
+                    // item.SetRewardItem();
                 }
-                else
-                {
-                    int rewardAmount = reward.RewardAmount + existingItem.GetRewardAmount();
-                    existingItem.RewardAmount.text = "x" + rewardAmount;
-                }
+                
+               
+                // var existingItem = _rewardUIData.EarnedRewardItems.Find(item => item.RewardIcon.sprite.name.Contains(rewardItem.RewardIcon.name));
+                //
+                // if (reward.RewardIcon.name.Contains(Constants.Grenade))return;
+                //
+                // if (existingItem == null)
+                // {
+                //     var newEarnedItem = Instantiate(_rewardUIData.RewardPrefab, _content);
+                //     newEarnedItem.SetRewardItem(reward.RewardIcon,reward.RewardAmount.ToString(),reward.RewardType);
+                //      _rewardUIData.EarnedRewardItems.Add(newEarnedItem);
+                // }
+                // else
+                // {
+                //     int rewardAmount = reward.RewardAmount + existingItem.GetRewardAmount();
+                //     existingItem.RewardAmount.text = "x" + rewardAmount;
+                // }
             }
         }
         
@@ -63,7 +66,7 @@ namespace Player.UI.Reward
         
         private void OnEnable()
         {
-            EventManager< Data.Reward>.Subscribe(UIEvents.OnEarnedReward,SetRewardText);
+            EventManager< Data.Reward>.Subscribe(UIEvents.OnEarnedReward,SetRewardItem);
             EventManager.Subscribe(PanelType.FailedPanel,OpenFailedPanel);
             EventManager<bool>.Subscribe(UIEvents.OnLockExitButton,SetExitButton);
             _exitButton.onClick.AddListener(ClickExitButton);
@@ -71,7 +74,7 @@ namespace Player.UI.Reward
      
         private void OnDisable()
         {
-            EventManager<Data.Reward>.Unsubscribe(UIEvents.OnEarnedReward,SetRewardText);
+            EventManager<Data.Reward>.Unsubscribe(UIEvents.OnEarnedReward,SetRewardItem);
             EventManager.Unsubscribe(PanelType.FailedPanel,OpenFailedPanel);
             EventManager<bool>.Unsubscribe(UIEvents.OnLockExitButton,SetExitButton);
             _exitButton.onClick.RemoveListener(ClickExitButton);

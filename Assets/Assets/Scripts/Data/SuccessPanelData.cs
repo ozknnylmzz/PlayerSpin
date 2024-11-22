@@ -20,11 +20,11 @@ namespace Player.Data
         {
             switch (cardType)
             {
-                case SpinType.Silver:
+                case SpinType.Blue:
                     return BronzeCardColorFrame;
-                case SpinType.Bronze:
+                case SpinType.Purple:
                     return SilverCardColorFrame;
-                case SpinType.Golden:
+                case SpinType.Green:
                     return GoldenCardColorFrame;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(cardType), cardType, null);

@@ -12,6 +12,12 @@ namespace Player.Spin
         [field:SerializeField] public int MaxSpins { get; private set; }
         [field:SerializeField] public int LockDelayTime { get; private set; }
 
+
+        public int GetResultNumber()
+        {
+            return Random.Range(MinSpins,MaxSpins);
+        }
+
     }
 }
 

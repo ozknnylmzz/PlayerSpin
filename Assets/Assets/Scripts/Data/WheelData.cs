@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Player.Enum;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Player.Data
 {
@@ -11,55 +8,32 @@ namespace Player.Data
     public class WheelData : ScriptableObject
     {
         public WheelSliceData[] WheelItems;
-
-        public WheelSliceData FindWheelSliceByAngle(float targetAngle)
-        {
-            foreach (var slice in WheelItems)
-            {
-                if (slice.MinAngle <= targetAngle && targetAngle < slice.MaxAngle)
-                {
-                    return slice;
-                }
-            }
-
-            if (targetAngle>350 &&targetAngle <360)
-            {
-                return WheelItems[0];
-            }
-
-            return null;
-        }
+        public Sprite WheelGlow;
+        [field:SerializeField] public float AnimationScale { get; private set; }
+        [field:SerializeField] public float AnimationTime { get; private set; }
     }
 
     [Serializable]
     public class WheelSliceData
     {
         [field: SerializeField] public int SlotNo { get; private set; }
-        [field: SerializeField] public int MinAngle { get; private set; }
-        [field: SerializeField] public int MaxAngle { get; private set; }
-
-        [FormerlySerializedAs("itemIcon")] [SerializeField] private Sprite _itemIcon;
-
-        public SpinType SpinType;
-        [FormerlySerializedAs("Quantity")] public int Amount;
-
+        [field: SerializeField] public Sprite ItemImage;
+        [field: SerializeField] public Sprite BackgroundImage;
+        [field: SerializeField] public SpinType SpinType;
+        [field: SerializeField] public int Amount;
+        
         public string ItemName
         {
             get
             {
-                if (_itemIcon == null)
+                if (ItemImage == null)
                 {
-                    Debug.LogError("Sprite is missing. Please assign a Sprite to the ItemIcon.");
+                    Debug.LogError("Sprite is missing. Please assign a Sprite to the ItemImage.");
                     return "";
                 }
-                return _itemIcon.name;
+                
+                return ItemImage.name;
             }
-        }
-
-        public Sprite ItemIcon
-        {
-            get { return _itemIcon; }
-            set { _itemIcon = value; }
         }
 
         public bool CheckGrenadeItem()
@@ -72,9 +46,9 @@ namespace Player.Data
             return false;
         }
 
-        public void SetWheelProp(Sprite itemIcon,int amount)
+        public void SetWheelProp(Sprite itemIcon, int amount)
         {
-            ItemIcon = itemIcon;
+            ItemImage = itemIcon;
             Amount = amount;
         }
     }

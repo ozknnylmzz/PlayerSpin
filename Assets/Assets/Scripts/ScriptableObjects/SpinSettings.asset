@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 764fee66feb044a26aa34c8efb501f52, type: 3}
   m_Name: SpinSettings
   m_EditorClassIdentifier: 
-  <SpinTime>k__BackingField: 3
+  <SpinTime>k__BackingField: 4
   <RewardAngle>k__BackingField: 20
   <GapAngle>k__BackingField: 25
-  <MinSpins>k__BackingField: 3
-  <MaxSpins>k__BackingField: 5
+  <MinSpins>k__BackingField: 2
+  <MaxSpins>k__BackingField: 3
   <LockDelayTime>k__BackingField: 250

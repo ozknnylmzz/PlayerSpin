@@ -60,7 +60,7 @@ namespace Player.UI
             ClearRewardCard();
             DataManager.Instance.ResetData();
             EventManager.Execute(PanelType.FailedPanel);
-            EventManager.Execute(SpinType.Bronze);
+            EventManager.Execute(SpinType.Purple);
             Close();
         }
 

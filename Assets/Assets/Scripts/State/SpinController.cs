@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using DG.Tweening;
 using Player.Data;
 using Player.Enum;
+using Player.Spin.Creator;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,95 +10,193 @@ using Random = UnityEngine.Random;
 
 namespace Player.Spin.State
 {
-    public class SpinController :MonoBehaviour
+    public class SpinController : MonoBehaviour
     {
-        [SerializeField]  private SpinState _spinState;
-        [SerializeField] private SpinSettings _spinSettings;
         [SerializeField] private RectTransform _spinObject;
         [SerializeField] private Button _spinButton;
         [SerializeField] private TextMeshProUGUI _spinBaseText;
-        private SpinType _spinType=SpinType.Bronze;
-        
+        [SerializeField] private SpinCreator _spinCreator;
+        private SpinType _spinType = SpinType.Purple;
+
         private void Play()
         {
             LockButtons(true);
             DataManager.Instance.IncreaseRound();
             EventManager.Execute(UIEvents.OnPlaySpin);
-            
+
+            // for (int i = 0; i < UPPER; i++)
+            // {
+            //     
+            // }
+
             Tween spinTween = PlaySpin();
-            
+
             spinTween.OnComplete(
-                () =>
-                {
-                    ResultSpin(_spinObject.localEulerAngles.z);
-                });
+                () => { ResultSpin(_spinObject.localEulerAngles.z); });
         }
-        
+
         private Tween PlaySpin()
         {
             Sequence sequence = DOTween.Sequence();
-            
-            float totalAnglePerSection = _spinSettings.RewardAngle + _spinSettings.GapAngle;
 
-            int numberOfSpins = Random.Range(_spinSettings.MinSpins, _spinSettings.MaxSpins);
+            // SpinCreator içindeki WheelItem'ları al
+            var wheelItems = _spinCreator.WheelItems;
+            int totalItems = wheelItems.Count;
+            int randomSpins = Random.Range(4, 6); // Rastgele spin sayısı
 
-            int randomSectionIndex = Random.Range(0, (int)(360 / totalAnglePerSection));
-           
-            float  targetAngle = numberOfSpins * 360f + randomSectionIndex * totalAnglePerSection + _spinSettings.RewardAngle / 2f;
+            int startIndex = Random.Range(0, totalItems);
 
-            targetAngle = -targetAngle+Random.Range(0,_spinSettings.RewardAngle);
-            
-            sequence.Append(_spinObject.DORotate(new Vector3(0, 0, targetAngle), _spinSettings.SpinTime, RotateMode.FastBeyond360)
-                .SetEase(Ease.OutCubic));
-           
+            int fastSpins = randomSpins - 2; // Son 2 spin yavaşlayacak
+            float initialDuration = 0.25f; // İlk tur için başlangıç süresi (yavaşça başlama)
+            float finalDuration = 0.05f; // Sonraki turlar için sabit hız süresi
+            float accelerationStep = 0.05f; // 1. tur boyunca hız artışı
+            float slowDownStep = 0.1f; // Son tur boyunca yavaşlama artışı
+
+            // 1. Tur: Yavaş başlayıp hızlanma
+            float currentDuration = initialDuration;
+            for (int i = 0; i < totalItems; i++)
+            {
+                // Şu anki öğeyi hesapla
+                int currentIndex = (startIndex + i) % totalItems; // Döngüye uygun bir index elde et
+
+                // Her öğeyi büyütme animasyonunu ekle
+                sequence.Append(
+                    wheelItems[currentIndex].transform
+                        .DOScale(Vector3.one * DataManager.Instance.WheelData.AnimationScale, currentDuration)
+                        .SetEase(Ease.InCubic) // Ease InCubic ile hızlanma efekti
+                );
+
+                // Geriye dönüş animasyonunu 3. öğeden sonra ekle
+                if (i >= 3)
+                {
+                    int returnIndex = (startIndex + i - 3) % totalItems; // 3 öğe öncesini hesapla
+                    sequence.Join(
+                        wheelItems[returnIndex].transform.DOScale(Vector3.one, currentDuration)
+                            .SetEase(Ease.OutCubic) // Ease OutCubic ile geri dönüş
+                    );
+                }
+
+                // Süreyi azaltarak hızlanmayı sağla
+                currentDuration = Mathf.Max(0.1f, currentDuration - accelerationStep);
+            }
+
+            // 2. Sabit Hız Turları
+            currentDuration = finalDuration; // Sabit hız süresi
+            for (int spin = 0; spin < fastSpins; spin++)
+            {
+                for (int i = 0; i < totalItems; i++)
+                {
+                    // Şu anki öğeyi hesapla
+                    int currentIndex = (startIndex + i) % totalItems;
+
+                    // Sabit hızda animasyonlar
+                    sequence.Append(
+                        wheelItems[currentIndex].transform
+                            .DOScale(Vector3.one * DataManager.Instance.WheelData.AnimationScale, currentDuration)
+                            .SetEase(Ease.Linear) // Linear ile sabit hızda dönüş
+                    );
+
+                    // Geriye dönüş animasyonunu 3. öğeden sonra ekle
+                    if (i >= 3)
+                    {
+                        int returnIndex = (startIndex + i - 3) % totalItems; // 3 öğe öncesini hesapla
+                        sequence.Join(
+                            wheelItems[returnIndex].transform.DOScale(Vector3.one, currentDuration)
+                                .SetEase(Ease.Linear) // Ease Linear ile geri dönüş
+                        );
+                    }
+                }
+            }
+
+            // 3. Son Tur: Hızlıdan Yavaşlamaya
+            currentDuration = finalDuration; // Hızlıdan başlamak için
+            int targetIndex = Random.Range(0, totalItems); // Rastgele bir hedef seç
+
+            for (int i = 0; i <= targetIndex; i++)
+            {
+                // Şu anki öğeyi hesapla
+                int currentIndex = (startIndex + i) % totalItems;
+
+                // Son tur boyunca hızdan yavaşlamaya geçiş
+                sequence.Append(
+                    wheelItems[currentIndex].transform
+                        .DOScale(Vector3.one * DataManager.Instance.WheelData.AnimationScale, currentDuration)
+                        .SetEase(Ease.OutCubic) // Yavaşça durmak için
+                );
+
+                // Geriye dönüş animasyonunu 3. öğeden sonra ekle
+                if (i >= 3)
+                {
+                    int returnIndex = (startIndex + i - 3) % totalItems; // 3 öğe öncesini hesapla
+                    sequence.Join(
+                        wheelItems[returnIndex].transform.DOScale(Vector3.one, currentDuration)
+                            .SetEase(Ease.OutCubic) // Ease OutCubic ile geri dönüş
+                    );
+                }
+
+                // Yavaşlama için süreyi artır
+                currentDuration += slowDownStep;
+            }
+
+            // Hedef öğeyi vurgulama
+            var targetItem = wheelItems[targetIndex];
+            sequence.Append(
+                targetItem.transform
+                    .DOScale(Vector3.one * DataManager.Instance.WheelData.AnimationScale, currentDuration)
+                    .SetEase(Ease.OutQuad)
+            );
+            sequence.Append(
+                targetItem.transform.DOScale(Vector3.one, currentDuration)
+                    .SetEase(Ease.InQuad)
+            );
+
             return sequence;
         }
 
+
         private void ResultSpin(float spinRotate)
         {
+            // WheelSliceData wheelInfo = DataManager.Instance.WheelData.FindWheelSliceByAngle(spinRotate);
 
-            WheelSliceData wheelInfo = DataManager.Instance.WheelData.FindWheelSliceByAngle(spinRotate);
+            // if (wheelInfo.CheckGrenadeItem())
+            // {
+            //     LockButtons(false);
+            //     EventManager<PanelType>.Execute(UIEvents.OnOpenPanel, PanelType.FailedPanel);
+            //     return;
+            // }
 
-            if (wheelInfo.CheckGrenadeItem())
-            {
-                LockButtons(false);
-                EventManager<PanelType>.Execute(UIEvents.OnOpenPanel, PanelType.FailedPanel);
-                return;
-            }
+            // DataManager.Instance.Inventory.AddReward(wheelInfo.Amount, wheelInfo.ItemImage,wheelInfo.SpinType);
 
-            DataManager.Instance.Inventory.AddReward(wheelInfo.Amount, wheelInfo.ItemIcon,wheelInfo.SpinType);
+            // Reward rewardItem = DataManager.Instance.Inventory.GetReward(wheelInfo.ItemImage.name);
+            // EventManager<Reward>.Execute(UIEvents.OnEarnedReward, rewardItem);
 
-            Reward rewardItem = DataManager.Instance.Inventory.GetReward(wheelInfo.ItemIcon.name);
-            EventManager<Reward>.Execute(UIEvents.OnEarnedReward, rewardItem);
-            
             CheckSafeArea();
         }
 
-        private async void CheckSafeArea()
+        private void CheckSafeArea()
         {
-            await Task.Delay(_spinSettings.LockDelayTime);
-            
             LockButtons(false);
-            
-            if (_spinType!=SpinType.Bronze)
+
+            if (_spinType != SpinType.Purple)
             {
-                _spinType = SpinType.Bronze;
+                _spinType = SpinType.Purple;
                 SetBaseText(_spinType);
-                _spinState.ChangeState(_spinState.SpinBronzeState);
                 return;
             }
+
             if (DataManager.Instance.CheckGoldenRoundData())
             {
-                _spinType = SpinType.Golden;
+                _spinType = SpinType.Green;
                 SetBaseText(_spinType);
-                _spinState.ChangeState(_spinState.SpinGoldenState);
+                // _spinState.ChangeState(_spinState.SpinGoldenState);
                 return;
             }
+
             if (DataManager.Instance.CheckSilverRoundData())
             {
-                _spinType = SpinType.Silver;
+                _spinType = SpinType.Blue;
                 SetBaseText(_spinType);
-                _spinState.ChangeState(_spinState.SpinSilverState);
+                // _spinState.ChangeState(_spinState.SpinSilverState);
             }
         }
 
@@ -109,7 +208,7 @@ namespace Player.Spin.State
 
         private void SetBaseText(SpinType spinType)
         {
-            _spinBaseText.text = spinType+ " Spin";
+            _spinBaseText.text = spinType + " Spin";
         }
 
         private void OnEnable()

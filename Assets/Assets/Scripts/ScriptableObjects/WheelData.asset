@@ -13,51 +13,86 @@ MonoBehaviour:
   m_Name: WheelData
   m_EditorClassIdentifier: 
   WheelItems:
-  - <SlotNo>k__BackingField: 1
-    <MinAngle>k__BackingField: -10
-    <MaxAngle>k__BackingField: 10
-    _itemIcon: {fileID: 21300000, guid: ce7328a2fb097464d948a7f5934e1d34, type: 3}
+  - <SlotNo>k__BackingField: 2
+    ItemImage: {fileID: 21300000, guid: 49c7620b6be39451699f9dd8f7510bb5, type: 3}
+    BackgroundImage: {fileID: 21300000, guid: 97015b9c8e41d49de9b3b84779bcf5a7, type: 3}
+    SpinType: 2
+    Amount: 250
+  - <SlotNo>k__BackingField: 16
+    ItemImage: {fileID: 21300000, guid: 7a98ff7d7ad404cedae9f5276e123d12, type: 3}
+    BackgroundImage: {fileID: 21300000, guid: 55ab78bb5705a45efbdba0f372c1469e, type: 3}
     SpinType: 1
     Amount: 1
-  - <SlotNo>k__BackingField: 2
-    <MinAngle>k__BackingField: 35
-    <MaxAngle>k__BackingField: 55
-    _itemIcon: {fileID: 21300000, guid: 6862ce0e674d9446ca94923802375cdc, type: 3}
-    SpinType: 1
-    Amount: 250
-  - <SlotNo>k__BackingField: 3
-    <MinAngle>k__BackingField: 80
-    <MaxAngle>k__BackingField: 100
-    _itemIcon: {fileID: 21300000, guid: 834a26333429a4596b60bf2c875f9a0c, type: 3}
-    SpinType: 1
+  - <SlotNo>k__BackingField: 14
+    ItemImage: {fileID: 21300000, guid: 6dd98809192e24bb185001de5a7f7b38, type: 3}
+    BackgroundImage: {fileID: 21300000, guid: 97015b9c8e41d49de9b3b84779bcf5a7, type: 3}
+    SpinType: 2
     Amount: 1
   - <SlotNo>k__BackingField: 4
-    <MinAngle>k__BackingField: 125
-    <MaxAngle>k__BackingField: 145
-    _itemIcon: {fileID: 21300000, guid: d8fed3339ab7841129b9bc663aa29b1c, type: 3}
-    SpinType: 0
-    Amount: 1
-  - <SlotNo>k__BackingField: 5
-    <MinAngle>k__BackingField: 170
-    <MaxAngle>k__BackingField: 190
-    _itemIcon: {fileID: 21300000, guid: f0a711f60993f4b32bd69f94614b8f53, type: 3}
+    ItemImage: {fileID: 21300000, guid: e04bf2c78fd3f49218e4a3ec522f4f0c, type: 3}
+    BackgroundImage: {fileID: 21300000, guid: 6e89577c7208241f8b2e979f467525d9, type: 3}
     SpinType: 1
     Amount: 1
-  - <SlotNo>k__BackingField: 6
-    <MinAngle>k__BackingField: 215
-    <MaxAngle>k__BackingField: 235
-    _itemIcon: {fileID: 21300000, guid: 1270d37fca3cd4464aa9b41d7d827759, type: 3}
+  - <SlotNo>k__BackingField: 9
+    ItemImage: {fileID: 21300000, guid: b7dbac3d8b95448e487ae8ad3d230b2e, type: 3}
+    BackgroundImage: {fileID: 21300000, guid: 55ab78bb5705a45efbdba0f372c1469e, type: 3}
     SpinType: 1
-    Amount: 250
-  - <SlotNo>k__BackingField: 7
-    <MinAngle>k__BackingField: 260
-    <MaxAngle>k__BackingField: 280
-    _itemIcon: {fileID: 21300000, guid: 6ff945e5d496b4d47b6a3d0d67bfbaf7, type: 3}
-    SpinType: 1
+    Amount: 1
+  - <SlotNo>k__BackingField: 11
+    ItemImage: {fileID: 21300000, guid: 9f8ec0d58522f429d938ada2e1aa5296, type: 3}
+    BackgroundImage: {fileID: 21300000, guid: 97015b9c8e41d49de9b3b84779bcf5a7, type: 3}
+    SpinType: 2
     Amount: 1
   - <SlotNo>k__BackingField: 8
-    <MinAngle>k__BackingField: 305
-    <MaxAngle>k__BackingField: 325
-    _itemIcon: {fileID: 21300000, guid: d8fed3339ab7841129b9bc663aa29b1c, type: 3}
+    ItemImage: {fileID: 21300000, guid: ac432882c1cf94d92aa9496caf9b4ee6, type: 3}
+    BackgroundImage: {fileID: 21300000, guid: 6e89577c7208241f8b2e979f467525d9, type: 3}
+    SpinType: 3
+    Amount: 1
+  - <SlotNo>k__BackingField: 12
+    ItemImage: {fileID: 21300000, guid: 4973042e6ed5a4333b3298727fa8bebe, type: 3}
+    BackgroundImage: {fileID: 21300000, guid: 6e89577c7208241f8b2e979f467525d9, type: 3}
+    SpinType: 3
+    Amount: 1
+  - <SlotNo>k__BackingField: 6
+    ItemImage: {fileID: 21300000, guid: c1e3f83fb7eb942ee8baa3d7c3723eb1, type: 3}
+    BackgroundImage: {fileID: 21300000, guid: 97015b9c8e41d49de9b3b84779bcf5a7, type: 3}
+    SpinType: 2
+    Amount: 250
+  - <SlotNo>k__BackingField: 13
+    ItemImage: {fileID: 21300000, guid: ea194f6e0abb84f93887d90e9d53273c, type: 3}
+    BackgroundImage: {fileID: 21300000, guid: f4f151a5ee5d4481aa3b02b2d79d33b2, type: 3}
     SpinType: 0
     Amount: 1
+  - <SlotNo>k__BackingField: 3
+    ItemImage: {fileID: 21300000, guid: 1ccab32afb814460abc0e49745e091fb, type: 3}
+    BackgroundImage: {fileID: 21300000, guid: 6e89577c7208241f8b2e979f467525d9, type: 3}
+    SpinType: 3
+    Amount: 1
+  - <SlotNo>k__BackingField: 5
+    ItemImage: {fileID: 21300000, guid: 8d2a4714addc04b7eb4e83e5c1418334, type: 3}
+    BackgroundImage: {fileID: 21300000, guid: f4f151a5ee5d4481aa3b02b2d79d33b2, type: 3}
+    SpinType: 0
+    Amount: 1
+  - <SlotNo>k__BackingField: 15
+    ItemImage: {fileID: 21300000, guid: ffe128a5f047f43d9a494e099634504e, type: 3}
+    BackgroundImage: {fileID: 21300000, guid: 6e89577c7208241f8b2e979f467525d9, type: 3}
+    SpinType: 3
+    Amount: 100
+  - <SlotNo>k__BackingField: 10
+    ItemImage: {fileID: 21300000, guid: a91b3bdd41b664d77b88a55ba9be7d8a, type: 3}
+    BackgroundImage: {fileID: 21300000, guid: f4f151a5ee5d4481aa3b02b2d79d33b2, type: 3}
+    SpinType: 0
+    Amount: 1
+  - <SlotNo>k__BackingField: 1
+    ItemImage: {fileID: 21300000, guid: 27ecefc2fbbdc4e4a82a64513b7ff7e1, type: 3}
+    BackgroundImage: {fileID: 21300000, guid: f4f151a5ee5d4481aa3b02b2d79d33b2, type: 3}
+    SpinType: 0
+    Amount: 1
+  - <SlotNo>k__BackingField: 7
+    ItemImage: {fileID: 21300000, guid: 0b8bce13ce79d4d3694d80d2c1938113, type: 3}
+    BackgroundImage: {fileID: 21300000, guid: 97015b9c8e41d49de9b3b84779bcf5a7, type: 3}
+    SpinType: 2
+    Amount: 1
+  WheelGlow: {fileID: 21300000, guid: 64757c6c708c34a3eb318f0532a571f7, type: 3}
+  <AnimationScale>k__BackingField: 1.2
+  <AnimationTime>k__BackingField: 0.2

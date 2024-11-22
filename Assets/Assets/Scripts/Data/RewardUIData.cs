@@ -9,6 +9,7 @@ namespace Player.UI.Reward
     public class RewardUIData : ScriptableObject
     {
         [field: SerializeField] public RewardItem RewardPrefab { get; private set; }
+        
         public List<RewardItem> EarnedRewardItems = new();
 
         public void AddRewardItem(RewardItem rewardItem)
